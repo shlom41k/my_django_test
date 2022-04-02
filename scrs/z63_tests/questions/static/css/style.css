@@ -1,0 +1,35 @@
+.img-container {
+    text-align: center;
+    display: block;
+}
+
+.question-img {
+    text-align: center;
+    display: block;
+}
+
+.container {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#h1 {
+    text-align: center;
+    background-color: #D4FFC4;
+}
+
+#q_table {
+    width: 100%;
+}
+
+#question {
+    width: 35%;
+    vertical-align: top;
+}
+
+#h1-index {
+    text-align: center;
+    background-color: #c2dff2;
+    margin-left: 10%;
+    margin-right: 10%;
+}

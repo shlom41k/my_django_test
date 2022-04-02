@@ -1,0 +1,61 @@
+{% extends "questions/base.html" %}
+{% load shuffle %}
+{% load static %}
+
+
+{% block title %}
+    Django test
+{% endblock %}
+
+
+{% block content %}
+
+    <div style="font-size:17px;" class="container">
+        <h1 id="h1"> Answer for the questions below </h1>
+        <hr>
+
+        <form action="{% url 'test' %}" method="POST" name="questions_dict">
+            {% csrf_token %}
+
+            {% for question in questions %}
+            <div>
+                <p>
+                    {% if question.image %}
+                        <table id="q_table">
+                            <tr>
+                                <td id="question">
+                                    <h4>{{ forloop.counter }}. {{ question.question }}</h4>
+                                    {% for answer in question.answers.all|shuffle %}
+                                        <input type="radio" name="{{ question.question }}" id="{{ question.id|slugify }}-{{ answer.id|slugify }}" value="{{ answer.answer }}" required>
+                                        <label for="{{ question.id|slugify  }}-{{ answer.id|slugify }}">{{ answer.answer }}</label><br/>
+                                    {% endfor %}
+                                </td>
+
+                                <td id="image">
+                                    <span class="question-img">
+                                    <br><img id="q_img" src="{{ question.image.url }}"><br>
+                                    </span>
+                                </td>
+                            </tr>
+                         </table>
+                    {% else %}
+                        <h4>{{ forloop.counter }}. {{ question.question }}</h4>
+
+                        {% for answer in question.answers.all|shuffle %}
+                            <input type="radio" name="{{ question.question }}" id="{{ question.id|slugify }}-{{ answer.id|slugify }}" value="{{ answer.answer }}" required>
+                            <label for="{{ question.id|slugify  }}-{{ answer.id|slugify }}">{{ answer.answer }}</label><br/>
+                        {% endfor %}
+                    {% endif %}
+                </p>
+            </div>
+            <hr>
+            {% endfor %}
+
+            <label for="name">Input your name:</label>
+            <input type="text" id="name" name="name" required>
+            <input type="submit" value="Check">
+        </form>
+
+    <br><p><a href="{% url 'index' %}"><button type="submit"> Home </button></a></p>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "questions/base.html" %}
+
+
+{% block title %}
+    Test result
+{% endblock %}
+
+
+{% block content %}
+    <h1 align="center">Test passed</h1>
+
+    <div style="font-size:17px;">
+        <div>
+            Total questions: <font style="font-weight: bold;">{{ total_questions }}</font>,
+            correct answers: <font style="font-weight: bold;">{{ correct_answers }}</font><br><br>
+            <font style="font-weight: bold;">{{ user }}</font>,
+            your result: <font style="font-weight: bold;">{{ result|floatformat:1 }}</font> %.<br><br>
+        </div>
+
+        <ul>
+            {% for answer in answers %}
+            <p>
+                <li>
+                    <h4><font color="blue">Q: </font>{{ answer.question.question }}</h4>
+
+                    {% if answer.your_answer == answer.question.answer %}
+                        Your answer: <font color="#00de64">{{ answer.your_answer }}</font>
+                    {% else %}
+                        Your answer: <font color="red">{{ answer.your_answer }}</font>
+                    {% endif %}
+                        <br>Correct answer: {{ answer.question.answer}}
+                </li>
+            </p>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <p><a href="{% url 'index' %}"><button type="submit"> Home </button></a></p>
+{% endblock %}

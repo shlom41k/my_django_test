@@ -1,0 +1,18 @@
+{% extends "questions/base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Z63 Python
+{% endblock %}
+
+
+{% block content %}
+    <h1 align="center" id="h1-index">Hi! It's a simple Django test for group 'Z63' by <a href="https://t.me/shlom41k"> shlom41k </a></h1>
+    <p align="center"><a href="{% url 'test' %}"><button type="submit" style="width:100px;height:40px"> Start test </button></a></p>
+
+    <span class="img-container">
+        <img src="{% static 'img/django.png' %}" alt="django" class="center"><br>
+    </span>
+
+{% endblock %}
